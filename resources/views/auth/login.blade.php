@@ -3,13 +3,32 @@
 @section('content')
 <div class="container">
     <div class="row justify-content-center">
-        <div class="col-md-8">
+        <div class="col-md-10">
             <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+                <div class="card-header text-center bg-primary"><h3 class="font-weight-bold text-white">ICT EQUIPMENT STORES MANAGEMENT SYSTEM</h3></div>
 
                 <div class="card-body">
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+
+                        <div class="row mb-3">
+                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Login AS') }}</label>
+
+                            <div class="col-md-6">
+                                <select name="loginas" id="" class="form-control form-control-user">
+                                    <option value="">Select As</option>
+                                    <option value="Central Stores Administrator">Central Stores Administrator</option>
+                                    <option value="Workshop Administrator">Workshop Administrator</option>
+                                    <option value="Workshop Store Man">Workshop Store Man</option>
+                                    <option value="Central Store Man">Central Store Man</option>
+                                </select>
+                                @error('loginas')
+                                <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
