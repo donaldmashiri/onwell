@@ -52,9 +52,11 @@ class StockRequestController extends Controller
         ]);
 
         // flash message
-        session()->flash('status', 'Stock Successfully requested.');
+//        session()->flash('status', 'Stock Successfully requested.');
+//
+//        return view('stocksrequests.index')->with('stocks', Stock::all());
 
-        return view('stocksrequests.index')->with('stocks', Stock::all());
+        return redirect()->back()->with('success', 'Stock request declined and deleted successfully.');
     }
 
     /**
@@ -70,20 +72,7 @@ class StockRequestController extends Controller
      */
     public function edit(string $id)
     {
-        // Retrieve all stock requests
-        $stockRequests = StockRequest::all();
-        $stocksAll = Stock::all();
 
-        // Retrieve the stock IDs from the requests
-        $stockIds = $stockRequests->pluck('stock_id')->toArray();
-        $stockReID = $stocksAll->pluck('id')->toArray();
-
-        // Retrieve the stocks based on the requested stock IDs
-        $stocks = Stock::whereIn('id', $stockIds)->get();
-        $stocksrequests = StockRequest::whereIn('id', $stockReID)->get();
-
-        // Return the view with the retrieved stocks
-        return view('stocksrequests.index', ['stocks' => $stocks, 'stocksrequests' => $stocksrequests]);
     }
 
     /**
@@ -98,11 +87,7 @@ class StockRequestController extends Controller
         $stockRequest->status = 'Approved';
         $stockRequest->save();
 
-        return $stockRequest;
-
-        // Redirect back or to any other desired page
-        return view('stocksrequests.index')->with('stocks', Stock::all());
-//        return redirect()->back()->with('success', 'Stock request approved successfully.');
+        return redirect()->back()->with('success', 'Stock request approved successfully.');
     }
 
     /**
@@ -110,6 +95,13 @@ class StockRequestController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        // Find the stock request by ID
+        $stockRequest = StockRequest::findOrFail($id);
+
+        // Perform any necessary cleanup or deletion
+        $stockRequest->delete();
+
+        // Redirect back or to any other desired page
+        return redirect()->back()->with('success', 'Stock request declined and deleted successfully.');
     }
 }

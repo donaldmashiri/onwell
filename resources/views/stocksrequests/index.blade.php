@@ -23,6 +23,7 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
+                        @include('partials.errors')
                         @if($stocks->count() > 0)
                             <table class="table table-bordered table-striped">
                                 <thead>
@@ -47,11 +48,30 @@
                                         <td>{{$stock->quantity}}</td>
                                         @foreach($stocksrequests as $stocksrequest)
                                              <td class="text-success font-weight-bold">{{$stocksrequest->quantity_requested}}</td>
+                                        <td><h6 class="bg-info p-1">{{$stocksrequest->status}}</h6></td>
                                         @endforeach
-                                        <td><h6 class="bg-info p-1">requested</h6></td>
                                         <td>
                                             <a href="{{ route('stocksrequests.update', $stocksrequest->id) }}" class="btn btn-primary btn-sm">Approve</a>
+
                                             <a href="{{ route('stocksrequests.destroy', $stocksrequest->id) }}" class="btn btn-danger btn-sm">Decline</a>
+
+{{--                                            <a href="{{ route('stocksrequests.update', $stocksrequest->id) }}"--}}
+{{--                                               onclick="event.preventDefault(); document.getElementById('approve-form-{{ $stocksrequest->id }}').submit();"--}}
+{{--                                               class="btn btn-primary btn-sm">Approve</a>--}}
+
+{{--                                            <form id="approve-form-{{ $stocksrequest->id }}" action="{{ route('stocksrequests.update', $stocksrequest->id) }}" method="POST" style="display: none;">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('PUT')--}}
+{{--                                            </form>--}}
+
+{{--                                            <a href="{{ route('stocksrequests.destroy', $stocksrequest->id) }}"--}}
+{{--                                               onclick="event.preventDefault(); document.getElementById('decline-form-{{ $stocksrequest->id }}').submit();"--}}
+{{--                                               class="btn btn-danger btn-sm">Decline</a>--}}
+
+{{--                                            <form id="decline-form-{{ $stocksrequest->id }}" action="{{ route('stocksrequests.destroy', $stocksrequest->id) }}" method="POST" style="display: none;">--}}
+{{--                                                @csrf--}}
+{{--                                                @method('DELETE')--}}
+{{--                                            </form>--}}
                                         </td>
                                     </tr>
                                 </tbody>

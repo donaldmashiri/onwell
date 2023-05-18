@@ -23,6 +23,7 @@
                     <!-- Card Body -->
 
                     <div class="card-body">
+                        @include('partials.errors')
                         <table class="table table-bordered table-bordered">
                             <thead>
                             <tr>
