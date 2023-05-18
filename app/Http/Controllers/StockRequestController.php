@@ -56,7 +56,7 @@ class StockRequestController extends Controller
 //
 //        return view('stocksrequests.index')->with('stocks', Stock::all());
 
-        return redirect()->back()->with('success', 'Stock request declined and deleted successfully.');
+        return redirect()->back()->with('success', 'Stock Successfully requested.');
     }
 
     /**
