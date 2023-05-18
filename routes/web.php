@@ -17,6 +17,8 @@ Route::get('/', function () {
     return view('auth.login');
 });
 
+Route::resource('stocks', \App\Http\Controllers\StockController::class );
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
