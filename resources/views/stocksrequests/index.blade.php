@@ -51,9 +51,9 @@
                                         <td><h6 class="bg-info p-1">{{$stocksrequest->status}}</h6></td>
                                         @endforeach
                                         <td>
-                                            <a href="{{ route('stocksrequests.update', $stocksrequest->id) }}" class="btn btn-primary btn-sm">Approve</a>
+                                            <a href="{{ route('stocksrequests.update', $stock->id) }}" class="btn btn-primary btn-sm">Approve</a>
 
-                                            <a href="{{ route('stocksrequests.destroy', $stocksrequest->id) }}" class="btn btn-danger btn-sm">Decline</a>
+                                            <a href="{{ route('stocksrequests.destroy', $stock->id) }}" class="btn btn-danger btn-sm">Decline</a>
 
 {{--                                            <a href="{{ route('stocksrequests.update', $stocksrequest->id) }}"--}}
 {{--                                               onclick="event.preventDefault(); document.getElementById('approve-form-{{ $stocksrequest->id }}').submit();"--}}
