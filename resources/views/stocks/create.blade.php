@@ -17,69 +17,68 @@
                     <!-- Card Header - Dropdown -->
                     <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                        <h6 class="m-0 font-weight-bold text-primary">Stock Details Details</h6>
-                        <a href="" class="btn btn-primary justify-content-end" data-bs-toggle="modal" data-bs-target="#addStock">Add New Stock</a>
+                        <h6 class="m-0 font-weight-bold text-primary">Add New Stock</h6>
+                        <a href="{{ route('stocks.index') }}" class="btn btn-secondary justify-content-end">Back</a>
                     </div>
                     <!-- Card Body -->
 
                     <div class="card-body">
-                        @if($stocks->count() > 0 )
-                            <table class="table">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Type</th>
-                                    <th>Description</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                    <th>Date Added</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @foreach($stocks as $stock)
-                                    <tr>
-                                        <td>#</td>
-                                        <td>{{$stock->name}}</td>
-                                        <td>{{$stock->type}}</td>
-                                        <td>{{$stock->description}}</td>
-                                        <td>{{$stock->quantity}}</td>
-                                        <td>{{$stock->price}}</td>
-                                        <td>{{$stock->created_at}}</td>
-                                    </tr>
-                                </tbody>
-                                @endforeach
-                            </table>
-                        @else
-                            <h1 class="alert alert-danger">No Stocks Added</h1>
-                        @endif
+                        @include('partials.errors')
+                        <form action="{{ route('stocks.store') }}" method="post">
+                            @csrf
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <label for="title">Stock Name</label>
+                                        <input type="text" name="name" class="form-control" placeholder="Enter Stock Name" minlength="3" required>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="title">Type of Stock</label>
+                                        <select class="form-control" name="type" id="">
+                                            <option value="">Type of </option>
+                                            <option value="fixed Stock">Fixed Stock</option>
+                                            <option value="tangible Stock">Tangible Stock</option>
+                                            <option value="intangible Stock">Intangible Stock</option>
+                                            <option value="operating Stock">Operating Stock</option>
+                                            <option value="non-operating Stock">Non-operating Stock</option>
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="title">Quantity</label>
+                                        <input type="number" name="quantity" class="form-control" placeholder="Enter Quantity:" min="1"  required>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="title">Price</label>
+                                        <input type="number" name="price" class="form-control" placeholder="Enter Price:" min="1" required>
+                                    </div>
+                                </div>
+
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <label for="title">Additional Description Or Information</label>
+                                        <textarea class="form-control" name="description" id="" cols="15" rows="5"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-10">
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary float-end">Submit</button>
+                                    </div>
+                                </div>
+                             </div>
+                        </form>
+
+
                     </div>
                 </div>
             </div>
 
-            <!-- Stocks -->
-            <div class="modal fade" id="addStock" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header bg-gradient-primary">
-                            <h5 class="modal-title text-white" id="exampleModalLabel">Add Stock</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <div class="col-md-6">
-                                <div class="form-group">
-                                    <label for="title">Upload Excel File</label>
-                                    <input type="file" name="file" class="form-control" placeholder="Enter Asset Name" minlength="3" required>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Submit</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
+
         </div>
 
     </div>

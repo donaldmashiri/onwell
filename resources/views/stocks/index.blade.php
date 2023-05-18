@@ -18,13 +18,17 @@
                     <div
                         class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                         <h6 class="m-0 font-weight-bold text-primary">Stock Details Details</h6>
-                        <a href="" class="btn btn-primary justify-content-end" data-bs-toggle="modal" data-bs-target="#addStock">Add New Stock</a>
+                        <div class="justify-content-en">
+                            <a href="{{ route('stocks.create') }}" class="btn btn-primary btn-sm">Add New Stock</a>
+                            <a href="" class="btn btn-success btn-sm" data-bs-toggle="modal" data-bs-target="#addStock">Import Stock</a>
+                        </div>
                     </div>
                     <!-- Card Body -->
 
                     <div class="card-body">
+                        @include('partials.errors')
                         @if($stocks->count() > 0 )
-                        <table class="table">
+                        <table class="table table-bordered table-striped">
                             <thead>
                                 <tr>
                                     <th>#</th>
@@ -44,7 +48,7 @@
                                     <td>{{$stock->type}}</td>
                                     <td>{{$stock->description}}</td>
                                     <td>{{$stock->quantity}}</td>
-                                    <td>{{$stock->price}}</td>
+                                    <td>${{$stock->price}}</td>
                                     <td>{{$stock->created_at}}</td>
                                 </tr>
                             </tbody>
@@ -63,21 +67,20 @@
                     <div class="modal-content">
                         <div class="modal-header bg-gradient-primary">
                             <h5 class="modal-title text-white" id="exampleModalLabel">Add Stock</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('stocks.store') }}" method="POST" enctype="multipart/form-data">
+                            <form action="{{ route('stocks.import') }}" method="POST" enctype="multipart/form-data">
                                 @csrf
                                 <div class="modal-body">
-                                    <div class="col-md-6">
+                                    <div class="col-md-12">
                                         <div class="form-group">
                                             <label for="title">Upload Excel File</label>
                                             <input type="file" name="file" class="form-control" minlength="3" required>
                                         </div>
                                     </div>
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button type="submit" class="btn btn-primary">Submit</button>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
                             </form>
                         </div>
                     </div>

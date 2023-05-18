@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Imports\StockImport;
 use App\Imports\StocksImport;
 use App\Models\Stock;
 use Illuminate\Http\Request;
@@ -20,13 +21,33 @@ class StockController extends Controller
             ->with('stocks', Stock::all());
     }
 
+    public function level()
+    {
+        return view('stocks.level')
+            ->with('stocks', Stock::all());
+    }
+
+    public function reports()
+    {
+        return view('stocks.reports');
+    }
+
     /**
      * Show the form for creating a new resource.
      */
     public function create()
     {
-        return view('stocks.index')
+        return view('stocks.create')
             ->with('stocks', Stock::all());
+    }
+
+    public function import(Request $request)
+    {
+        $file = $request->file('file');
+
+        \Maatwebsite\Excel\Facades\Excel::import(new StockImport, $file);
+
+        return back()->withStatus('Excel file imported successfully');
     }
 
     /**
@@ -36,26 +57,25 @@ class StockController extends Controller
     {
         // Validate the uploaded file
         $request->validate([
-            'file' => 'required|mimes:xls,xlsx'
+            'name' => ['required', 'string', 'max:255'],
+            'quantity' => ['required', 'max:255'],
+            'price' => ['required', 'max:255'],
+            'description' => ['required', 'string', 'max:255'],
+            'type' => ['required', 'string', 'max:255'],
         ]);
 
-        // Retrieve the uploaded file
-        $file = $request->file('file');
+        Stock::create([
+            "name" => request('name'),
+            "quantity" => request('quantity'),
+            "price" => request('price'),
+            "description" => request('description'),
+            "type" => request('type'),
+        ]);
 
-        // Import the stocks from the Excel file
-//        Excel::import(new StocksImport, $file);
-        \Maatwebsite\Excel\Facades\Excel::import(new StocksImport, $file);
+        // flash message
+        session()->flash('status', 'Stock Successfully added.');
 
-        // Redirect back with a success message
-        return back()->with('success', 'Stocks uploaded successfully.');
-
-
-//        $file = $request->file('file');
-//
-////        Excel::import(new CountryImport, );
-//        \Maatwebsite\Excel\Facades\Excel::import(new StocksImport, $file);
-//
-//        return back()->withStatus('Excel file imported successfully');
+        return view('stocks.index')->with('stocks', Stock::all());
     }
 
     /**
@@ -79,7 +99,7 @@ class StockController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+
     }
 
     /**
