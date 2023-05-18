@@ -39,9 +39,10 @@ class BudgetController extends Controller
         ]);
 
         // flash message
-        session()->flash('status', 'Budget created added.');
-
-        return view('budgets.index')->with('stocks', Stock::all());
+//        session()->flash('status', 'Budget created added.');
+//
+//        return view('budgets.index')->with('stocks', Stock::all());
+        return redirect()->back()->with('success', 'Budget created added.');
     }
 
     /**

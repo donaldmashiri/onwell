@@ -27,11 +27,16 @@
                     <div class="card-body">
                         @include('partials.errors')
 
-                        <ul class="list-group m-3">
-                            <li class="list-group-item">Budget <strong>${{ $lastBudget->amount }}</strong></li>
-                        </ul>
+                        @if(empty($lastBudget->amount))
+                            <p class="text-info">Please Enter Budget ...</p>
+                        @else
+                            <ul class="list-group m-3">
+                                <li class="list-group-item">Budget <strong>${{ $lastBudget->amount }}</strong></li>
+                            </ul>
+                        @endif
 
                         @if($stocks->count() > 0 )
+
                             <table class="table table-bordered table-striped">
                                 <thead>
                                 <tr>
