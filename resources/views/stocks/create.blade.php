@@ -24,8 +24,8 @@
 
                     <div class="card-body">
                         @if($stocks->count() > 0 )
-                        <table class="table">
-                            <thead>
+                            <table class="table">
+                                <thead>
                                 <tr>
                                     <th>#</th>
                                     <th>Name</th>
@@ -35,21 +35,21 @@
                                     <th>Price</th>
                                     <th>Date Added</th>
                                 </tr>
-                            </thead>
-                            <tbody>
-                            @foreach($stocks as $stock)
-                                <tr>
-                                    <td>#</td>
-                                    <td>{{$stock->name}}</td>
-                                    <td>{{$stock->type}}</td>
-                                    <td>{{$stock->description}}</td>
-                                    <td>{{$stock->quantity}}</td>
-                                    <td>{{$stock->price}}</td>
-                                    <td>{{$stock->created_at}}</td>
-                                </tr>
-                            </tbody>
-                            @endforeach
-                        </table>
+                                </thead>
+                                <tbody>
+                                @foreach($stocks as $stock)
+                                    <tr>
+                                        <td>#</td>
+                                        <td>{{$stock->name}}</td>
+                                        <td>{{$stock->type}}</td>
+                                        <td>{{$stock->description}}</td>
+                                        <td>{{$stock->quantity}}</td>
+                                        <td>{{$stock->price}}</td>
+                                        <td>{{$stock->created_at}}</td>
+                                    </tr>
+                                </tbody>
+                                @endforeach
+                            </table>
                         @else
                             <h1 class="alert alert-danger">No Stocks Added</h1>
                         @endif
@@ -66,26 +66,20 @@
                             <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                         </div>
                         <div class="modal-body">
-                            <form action="{{ route('stocks.store') }}" method="POST" enctype="multipart/form-data">
-                                @csrf
-                                <div class="modal-body">
-                                    <div class="col-md-6">
-                                        <div class="form-group">
-                                            <label for="title">Upload Excel File</label>
-                                            <input type="file" name="file" class="form-control" minlength="3" required>
-                                        </div>
-                                    </div>
+                            <div class="col-md-6">
+                                <div class="form-group">
+                                    <label for="title">Upload Excel File</label>
+                                    <input type="file" name="file" class="form-control" placeholder="Enter Asset Name" minlength="3" required>
                                 </div>
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="submit" class="btn btn-primary">Submit</button>
-                            </form>
+                            </div>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Submit</button>
                         </div>
                     </div>
                 </div>
             </div>
-
-
-
         </div>
 
     </div>

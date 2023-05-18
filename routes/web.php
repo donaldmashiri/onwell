@@ -18,6 +18,7 @@ Route::get('/', function () {
 });
 
 Route::resource('stocks', \App\Http\Controllers\StockController::class );
+Route::resource('stocksrequests', \App\Http\Controllers\StockRequestController::class );
 
 Auth::routes();
 

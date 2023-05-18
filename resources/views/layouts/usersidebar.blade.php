@@ -5,6 +5,9 @@
     <a class="nav-link collapsed " href="{{ route('stocks.index') }}"><i class="fas fa-fw fa-fan"></i>Stock/Asset </a>
 </li>
 <li class="nav-item ">
+    <a class="nav-link collapsed " href="{{ route('stocksrequests.index') }}"><i class="fas fa-fw fa-comment"></i>Request Stock </a>
+</li>
+<li class="nav-item ">
     <a class="nav-link collapsed " href="assets.php"><i class="fas fa-fw fa-ankh"></i>Assets Track Management </a>
 </li>
 
