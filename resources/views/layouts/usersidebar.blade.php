@@ -28,7 +28,7 @@
 </li>
 
 <li class="nav-item ">
-    <a class="nav-link collapsed " href="auth.php"><i class="fas fa-fw fa-lock"></i>Authentatication </a>
+    <a class="nav-link collapsed " href="/factorauth"><i class="fas fa-fw fa-lock"></i>Authentatication </a>
 </li>
 
 <li class="nav-item ">

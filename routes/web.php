@@ -29,3 +29,4 @@ Route::resource('budgets', \App\Http\Controllers\BudgetController::class );
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+Route::get('/factorauth', [App\Http\Controllers\HomeController::class, 'factorauth'])->name('factorauth');
