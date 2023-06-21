@@ -107,6 +107,10 @@ class StockController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $stock = Stock::findOrFail($id);
+
+        $stock->delete();
+
+        return back()->withStatus('Stock deleted Deleted');
     }
 }

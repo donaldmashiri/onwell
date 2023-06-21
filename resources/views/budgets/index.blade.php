@@ -67,6 +67,22 @@
                                     <td class="font-weight-bolder text-danger">Total: ${{ $totalPrice }}</td>
                                 </tr>
                             </table>
+
+                            <div class="container">
+                                <div class="row">
+                                  <div class="col-md-8 bg-light">
+                                      <p class="text-success">Decision Making: </p>
+                                      @if ($lastBudget->amount > $totalPrice)
+                                          <h4 class="text-success">Your budget for stock is higher, you can order more.</h4>
+                                      @elseif ($lastBudget->amount < $totalPrice)
+                                          <h5 class="text-danger">Your budget for stock is lower, you should consider reducing your order.</h5>
+                                      @else
+                                          <h6 class="text-info">Your budget for stock matches the total price. You can proceed with the order.</h6>
+                                      @endif
+                                  </div>
+                                </div>
+                            </div>
+
                         @else
                             <h1 class="alert alert-danger">No Stocks Added</h1>
                         @endif

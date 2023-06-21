@@ -38,18 +38,26 @@
                                     <th>Quantity</th>
                                     <th>Price</th>
                                     <th>Date Added</th>
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
                             @foreach($stocks as $stock)
                                 <tr>
-                                    <td>#</td>
+                                    <td>{{$stock->id}}</td>
                                     <td>{{$stock->name}}</td>
                                     <td>{{$stock->type}}</td>
                                     <td>{{$stock->description}}</td>
                                     <td>{{$stock->quantity}}</td>
                                     <td>${{$stock->price}}</td>
                                     <td>{{$stock->created_at}}</td>
+                                    <td>
+                                        <form action="{{ route('stocks.destroy', $stock->id) }}" method="POST">
+                                            @csrf
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger">Delete</button>
+                                        </form>
+                                    </td>
                                 </tr>
                             </tbody>
                             @endforeach
