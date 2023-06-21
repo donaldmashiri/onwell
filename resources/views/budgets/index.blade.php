@@ -68,18 +68,47 @@
                                 </tr>
                             </table>
 
+                            <!-- Include SweetAlert CSS -->
+                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+
+                            <!-- Include SweetAlert JS -->
+                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+
+
                             <div class="container">
                                 <div class="row">
-                                  <div class="col-md-8 bg-light">
-                                      <p class="text-success">Decision Making: </p>
-                                      @if ($lastBudget->amount > $totalPrice)
-                                          <h4 class="text-success">Your budget for stock is higher, you can order more.</h4>
-                                      @elseif ($lastBudget->amount < $totalPrice)
-                                          <h5 class="text-danger">Your budget for stock is lower, you should consider reducing your order.</h5>
-                                      @else
-                                          <h6 class="text-info">Your budget for stock matches the total price. You can proceed with the order.</h6>
-                                      @endif
-                                  </div>
+                                @if ($lastBudget->amount > $totalPrice)
+                                        <h4 class="text-success">Your budget for stock is higher, you can order more.</h4>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'success',
+                                                title: 'Your budget for stock is higher',
+                                                text: 'You can order more.',
+                                                confirmButtonText: 'OK',
+                                            });
+                                        </script>
+                                    @elseif ($lastBudget->amount < $totalPrice)
+                                            <h5 class="text-danger">Your budget for stock is lower, you should consider reducing your order.</h5>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'error',
+                                                title: 'Your budget for stock is lower',
+                                                text: 'You should consider reducing your order.',
+                                                confirmButtonText: 'OK',
+                                            });
+                                        </script>
+                                    @else
+                                            <h6 class="text-info">Your budget for stock matches the total price. You can proceed with the order.</h6>
+                                        <script>
+                                            Swal.fire({
+                                                icon: 'info',
+                                                title: 'Your budget for stock matches the total price',
+                                                text: 'You can proceed with the order.',
+                                                confirmButtonText: 'OK',
+                                            });
+                                        </script>
+                                    @endif
+
                                 </div>
                             </div>
 
