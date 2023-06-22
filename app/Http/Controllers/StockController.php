@@ -5,7 +5,10 @@ namespace App\Http\Controllers;
 use App\Imports\StockImport;
 use App\Imports\StocksImport;
 use App\Models\Stock;
+use App\Models\StockRequest;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 use Maatwebsite\Excel\Excel;
 use Maatwebsite\Excel\Concerns\ToModel;
 
@@ -29,7 +32,12 @@ class StockController extends Controller
 
     public function reports()
     {
-        return view('stocks.reports');
+
+        $totalUsers = User::count();
+        $totalStocks = Stock::count();
+        $totalRequested = StockRequest::count();
+
+        return view('stocks.reports', compact('totalStocks', 'totalUsers', 'totalRequested'));
     }
 
     /**
@@ -43,6 +51,14 @@ class StockController extends Controller
 
     public function import(Request $request)
     {
+        $validator = Validator::make($request->all(), [
+            'file' => 'required|mimes:xls,xlsx',
+        ]);
+
+        if ($validator->fails()) {
+            return back()->withErrors($validator)->withInput();
+        }
+
         $file = $request->file('file');
 
         \Maatwebsite\Excel\Facades\Excel::import(new StockImport, $file);

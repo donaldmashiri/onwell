@@ -20,4 +20,9 @@ class StockRequest extends Model
     {
         return $this->belongsTo(Stock::class, 'stock_id');
     }
+
+    public function user()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

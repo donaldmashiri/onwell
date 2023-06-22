@@ -13,6 +13,7 @@
                 <img src="../img/zrp.png" class="rounded-circle" width="50" height="50" alt="">
             </div>
             <div class="sidebar-brand-text mx-3">ZRP</div>
+
         </a>
 
         <!-- Divider -->
@@ -22,8 +23,8 @@
         <hr class="sidebar-divider">
 
         <!-- Heading -->
-        <div class="sidebar-heading">
-            Dashboard
+        <div class="sidebar-heading text-center text-white">
+            {{Auth::user()->role}}
         </div>
 
         <!-- Nav Item - Pages Collapse Menu -->

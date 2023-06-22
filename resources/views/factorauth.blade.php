@@ -24,7 +24,7 @@
                     <div class="card-body">
                         @include('partials.errors')
                         <div class="card-body">
-                            <form method="POST" action="">
+                            <form method="POST" action="{{ route('verify.factorauth') }}">
                                 @csrf
 
                                 <div class="form-group row">
@@ -49,6 +49,7 @@
                                     </div>
                                 </div>
                             </form>
+
                         </div>
 
 

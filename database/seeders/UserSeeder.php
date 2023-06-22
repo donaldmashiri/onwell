@@ -25,5 +25,12 @@ class UserSeeder extends Seeder
                 'password' => Hash::make('password')
             ]);
         }
+
+        User::create([
+            'role' => 'user',
+            'name' => 'Stores Man',
+            'email' => 'storesman@zrp.com',
+            'password' => Hash::make('password')
+        ]);
     }
 }

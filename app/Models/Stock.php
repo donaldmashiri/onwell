@@ -20,7 +20,7 @@ class Stock extends Model
 
     public function stockRequests()
     {
-        return $this->hasMany(StockRequest::class, 'stock_id');
+        return $this->hasMany(StockRequested::class, 'stock_id');
     }
 
 }
