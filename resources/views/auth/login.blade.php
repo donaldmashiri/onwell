@@ -14,20 +14,20 @@
                         <div class="row mb-3">
                             <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Login AS') }}</label>
 
-                            <div class="col-md-6">
-                                <select name="loginas" id="" class="form-control form-control-user">
-                                    <option value="">Select As</option>
-                                    <option value="Central Stores Administrator">Central Stores Administrator</option>
-                                    <option value="Workshop Administrator">Workshop Administrator</option>
-                                    <option value="Workshop Store Man">Workshop Store Man</option>
-                                    <option value="Central Store Man">Central Store Man</option>
-                                </select>
-                                @error('loginas')
-                                <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+{{--                            <div class="col-md-6">--}}
+{{--                                <select name="loginas" id="" class="form-control form-control-user">--}}
+{{--                                    <option value="">Select As</option>--}}
+{{--                                    <option value="Central Stores Administrator">Central Stores Administrator</option>--}}
+{{--                                    <option value="Workshop Administrator">Workshop Administrator</option>--}}
+{{--                                    <option value="Workshop Store Man">Workshop Store Man</option>--}}
+{{--                                    <option value="Central Store Man">Central Store Man</option>--}}
+{{--                                </select>--}}
+{{--                                @error('loginas')--}}
+{{--                                <span class="invalid-feedback" role="alert">--}}
+{{--                                        <strong>{{ $message }}</strong>--}}
+{{--                                    </span>--}}
+{{--                                @enderror--}}
+{{--                            </div>--}}
                         </div>
 
                         <div class="row mb-3">
