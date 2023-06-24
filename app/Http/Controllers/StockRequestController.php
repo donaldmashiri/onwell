@@ -85,9 +85,15 @@ class StockRequestController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $apply = StockRequest::findOrFail($id);
-        $apply->status = $request->input('status');
-        $apply->save();
+        $sr = StockRequest::findOrFail($id);
+        $sr->status = $request->input('status');
+        $sr->save();
+
+        // Update stock quantity
+        $stock = Stock::findOrFail($sr->stock_id);
+        $newStockQuantity = $stock->quantity - $sr->quantity_requested;
+        $stock->quantity = $newStockQuantity;
+        $stock->save();
 
         return redirect()->back()->with('status', 'Stock request approved successfully.');
     }

@@ -27,94 +27,97 @@
                     <div class="card-body">
                         @include('partials.errors')
 
-                        @if(empty($lastBudget->amount))
+                        @if($lastBudget === null)
                             <p class="text-info">Please Enter Budget ...</p>
                         @else
                             <ul class="list-group m-3">
                                 <li class="list-group-item">Budget <strong>${{ $lastBudget->amount }}</strong></li>
                             </ul>
-                        @endif
 
-                        @if($stocks->count() > 0 )
+                            @if($stocks->count() > 0 )
 
-                            <table class="table table-bordered table-striped">
-                                <thead>
-                                <tr>
-                                    <th>#</th>
-                                    <th>Name</th>
-                                    <th>Quantity</th>
-                                    <th>Price</th>
-                                </tr>
-                                </thead>
-                                <tbody>
-                                @php
-                                    $totalPrice = 0;
-                                @endphp
-                                @foreach($stocks as $stock)
+                                <table class="table table-bordered table-striped">
+                                    <thead>
                                     <tr>
-                                        <td>#</td>
-                                        <td>{{$stock->name}}</td>
-                                        <td>{{$stock->quantity}}</td>
-                                        <td>${{$stock->price}}</td>
+                                        <th>#</th>
+                                        <th>Name</th>
+                                        <th>Quantity</th>
+                                        <th>Price</th>
                                     </tr>
+                                    </thead>
+                                    <tbody>
                                     @php
-                                        $totalPrice += $stock->price;
+                                        $totalPrice = 0;
                                     @endphp
-                                </tbody>
-                                @endforeach
-                                <tr>
-                                    <td colspan="3"></td>
-                                    <td class="font-weight-bolder text-danger">Total: ${{ $totalPrice }}</td>
-                                </tr>
-                            </table>
+                                    @foreach($stocks as $stock)
+                                        <tr>
+                                            <td>#</td>
+                                            <td>{{$stock->name}}</td>
+                                            <td>{{$stock->quantity}}</td>
+                                            <td>${{$stock->price}}</td>
+                                        </tr>
+                                        @php
+                                            $totalPrice += $stock->price;
+                                        @endphp
+                                    </tbody>
+                                    @endforeach
+                                    <tr>
+                                        <td colspan="3"></td>
+                                        <td class="font-weight-bolder text-danger">Total: ${{ $totalPrice }}</td>
+                                    </tr>
+                                </table>
 
-                            <!-- Include SweetAlert CSS -->
-                            <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
+                                <!-- Include SweetAlert CSS -->
+                                <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.css">
 
-                            <!-- Include SweetAlert JS -->
-                            <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
+                                <!-- Include SweetAlert JS -->
+                                <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.0.18/dist/sweetalert2.min.js"></script>
 
 
-                            <div class="container">
-                                <div class="row">
-                                @if ($lastBudget->amount > $totalPrice)
-                                        <h4 class="text-success">Your budget for stock is higher, you can order more.</h4>
-                                        <script>
-                                            Swal.fire({
-                                                icon: 'success',
-                                                title: 'Your budget for stock is higher',
-                                                text: 'You can order more.',
-                                                confirmButtonText: 'OK',
-                                            });
-                                        </script>
-                                    @elseif ($lastBudget->amount < $totalPrice)
+                                <div class="container">
+                                    <div class="row">
+                                        @if ($lastBudget->amount > $totalPrice)
+                                            <h4 class="text-success">Your budget for stock is higher, you can order more.</h4>
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'success',
+                                                    title: 'Your budget for stock is higher',
+                                                    text: 'You can order more.',
+                                                    confirmButtonText: 'OK',
+                                                });
+                                            </script>
+                                        @elseif ($lastBudget->amount < $totalPrice)
                                             <h5 class="text-danger">Your budget for stock is lower, you should consider reducing your order.</h5>
-                                        <script>
-                                            Swal.fire({
-                                                icon: 'error',
-                                                title: 'Your budget for stock is lower',
-                                                text: 'You should consider reducing your order.',
-                                                confirmButtonText: 'OK',
-                                            });
-                                        </script>
-                                    @else
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'error',
+                                                    title: 'Your budget for stock is lower',
+                                                    text: 'You should consider reducing your order.',
+                                                    confirmButtonText: 'OK',
+                                                });
+                                            </script>
+                                        @else
                                             <h6 class="text-info">Your budget for stock matches the total price. You can proceed with the order.</h6>
-                                        <script>
-                                            Swal.fire({
-                                                icon: 'info',
-                                                title: 'Your budget for stock matches the total price',
-                                                text: 'You can proceed with the order.',
-                                                confirmButtonText: 'OK',
-                                            });
-                                        </script>
-                                    @endif
+                                            <script>
+                                                Swal.fire({
+                                                    icon: 'info',
+                                                    title: 'Your budget for stock matches the total price',
+                                                    text: 'You can proceed with the order.',
+                                                    confirmButtonText: 'OK',
+                                                });
+                                            </script>
+                                        @endif
 
+                                    </div>
                                 </div>
-                            </div>
 
-                        @else
-                            <h1 class="alert alert-danger">No Stocks Added</h1>
+                            @else
+                                <h1 class="alert alert-danger">No Stocks Added</h1>
+                            @endif
+
                         @endif
+
+
                     </div>
                 </div>
             </div>

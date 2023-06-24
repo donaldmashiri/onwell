@@ -21,16 +21,31 @@ class UserSeeder extends Seeder
             User::create([
                 'role' => 'admin',
                 'name' => 'Central Stores Administrator',
-                'email' => 'admin@admin.com',
-                'password' => Hash::make('password')
+                'email' => 'central@admin.com',
+                'password' => Hash::make('@Victor!')
             ]);
         }
 
         User::create([
-            'role' => 'user',
-            'name' => 'Stores Man',
-            'email' => 'storesman@zrp.com',
-            'password' => Hash::make('password')
+            'role' => 'admin',
+            'name' => 'Work Shop Administrator',
+            'email' => 'workshop@admin.com',
+            'password' => Hash::make('@Divine!')
         ]);
+
+        User::create([
+            'role' => 'user',
+            'name' => 'Central Stores Man',
+            'email' => 'storesman@zrp.com',
+            'password' => Hash::make('@Onwell!')
+        ]);
+
+        User::create([
+            'role' => 'user',
+            'name' => 'Work Stores Man',
+            'email' => 'workshopstoresman@zrp.com',
+            'password' => Hash::make('@Divine!12')
+        ]);
+
     }
 }

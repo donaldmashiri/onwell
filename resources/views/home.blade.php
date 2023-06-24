@@ -30,7 +30,11 @@
                     </table>
                 </div>
                 <div class="card-footer text-center">
+                    @if(Auth::user()->role === 'admin')
                     <a class="btn btn-primary" href="{{ route('stocks.index') }}">Go to Dashboard</a>
+                    @else
+                        <a class="btn btn-primary" href="{{ route('stocksrequests.index') }}">Go to Dashboard</a>
+                    @endif
                 </div>
             </div>
         </div>
